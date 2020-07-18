@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<p>밍고 is love ~~~~~~~~~~~~</p>
+<p>밍고 is love (admin)</p>
 
 </body>
 </html>

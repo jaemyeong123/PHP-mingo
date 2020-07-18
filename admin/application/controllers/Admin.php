@@ -7,7 +7,9 @@ class Admin extends CI_Controller {
 	}
 
 	function index(){
-		$this->load->View('admin1');
+		echo "success mingo!!";
+		exit;
+		$this->load->View('admin');
 	}
 
 
