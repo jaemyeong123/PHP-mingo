@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://admin.mingo.pe.kr/';
+$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'];
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ $config['base_url'] = 'http://admin.mingo.pe.kr/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index2.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
