@@ -50,7 +50,7 @@
                             </div>
                             <div style="width:800px;height:100px;margin-left:50px;display:flex;align-items:center;justify-contents:center;">
                                 <input type="submit" value="작성완료" style="font-size:1.3em;padding:auto 0;width:160px;height:50px;border:0;outline: 0;border-radius:5px;background-color:#0B3861;color:#FFFFFF;">
-                                <div OnClick="location.href ='http://localhost/index.php/noticeController/baordGetList'" style="margin:10px; text-align:center; line-height:50px; font-size:1.3em; border-radius:5px;width:160px;height:50px;background-color:#0B3861;color:#FFFFFF;">목록보기</div>
+                                <div OnClick="location.href ='http://admin.mingo.pe.kr/notice/noticeGetList'" style="margin:10px; text-align:center; line-height:50px; font-size:1.3em; border-radius:5px;width:160px;height:50px;background-color:#0B3861;color:#FFFFFF;">목록보기</div>
                             </div>
                         </form>
                     </div>

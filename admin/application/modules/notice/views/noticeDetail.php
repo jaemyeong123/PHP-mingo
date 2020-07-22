@@ -38,9 +38,9 @@
 
                         <!-- 리스트 내용 -->
                         <div style="margin-bottom: 10px;padding:20px; height:300px;width:1000px;font-size:1.3em;box-sizing:border-box;border-bottom:1px solid #E6E6E6;"><?=$noticeRow->contents?></div>
-                        <div OnClick="location.href ='http://localhost/index.php/noticeController/noticeDelete?notice_idx=<?=$noticeRow->notice_idx?>'" style="float:right;margin-right: 10px;text-align:center; line-height:45px; font-size:1.0em;border-radius:5px;width:100px;height:45px;background-color:#0B3861;color:#FFFFFF;">삭제</div>
-                        <div OnClick="location.href ='http://localhost/index.php/noticeController/noticeModifyForm?notice_idx=<?=$noticeRow->notice_idx?>'" style="float:right;margin-right: 10px;text-align:center; line-height:45px; font-size:1.0em;border-radius:5px;width:100px;height:45px;background-color:#0B3861;color:#FFFFFF;">수정</div>
-                        <div OnClick="location.href ='http://localhost/index.php/noticeController/baordGetList'" style="float:right;margin-right: 10px; text-align:center; line-height:45px; font-size:1.0em; border-radius:5px;width:100px;height:45px;background-color:#0B3861;color:#FFFFFF;">목록보기</div>
+                        <div OnClick="location.href ='http://admin.mingo.pe.kr/notice/noticeDelete?notice_idx=<?=$noticeRow->notice_idx?>'" style="float:right;margin-right: 10px;text-align:center; line-height:45px; font-size:1.0em;border-radius:5px;width:100px;height:45px;background-color:#0B3861;color:#FFFFFF;">삭제</div>
+                        <div OnClick="location.href ='http://admin.mingo.pe.kr/notice/noticeModifyForm?notice_idx=<?=$noticeRow->notice_idx?>'" style="float:right;margin-right: 10px;text-align:center; line-height:45px; font-size:1.0em;border-radius:5px;width:100px;height:45px;background-color:#0B3861;color:#FFFFFF;">수정</div>
+                        <div OnClick="location.href ='http://admin.mingo.pe.kr/notice/noticeGetList'" style="float:right;margin-right: 10px; text-align:center; line-height:45px; font-size:1.0em; border-radius:5px;width:100px;height:45px;background-color:#0B3861;color:#FFFFFF;">목록보기</div>
 
                     </div>
                 </div>

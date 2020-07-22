@@ -36,15 +36,15 @@
 
                         <!-- 리스트 내용 -->
                         <div style="margin-bottom: 10px;height:auto;overflow: hidden;width:1000px;box-sizing:border-box;border-bottom:1px solid #E6E6E6;">
-							<?php foreach ($noticeList as $row) :?>
-								<div OnClick="location.href ='http://localhost/index.php/noticeController/noticeDetail?notice_idx=<?=$row['notice_idx']?>'" style="text-align:center;line-height:60px;height:60px;width:100px;float:left;font-size:1.3em;"><?=$row['notice_idx']?></div>
-								<div OnClick="location.href ='http://localhost/index.php/noticeController/noticeDetail?notice_idx=<?=$row['notice_idx']?>'" style="text-align:center;line-height:60px;height:60px;width:500px;float:left;font-size:1.3em;"><?=$row['title']?></div>
-								<div OnClick="location.href ='http://localhost/index.php/noticeController/noticeDetail?notice_idx=<?=$row['notice_idx']?>'" style="text-align:center;line-height:60px;height:60px;width:400px;float:left;font-size:1.3em;"><?=$row['regdate']?></div>
-							<?php endforeach ?>
+          							<?php foreach ($noticeList as $row) {?>
+          								<div OnClick="location.href ='http://admin.mingo.pe.kr/notice/noticeDetail?notice_idx=<?=$row['notice_idx']?>'" style="text-align:center;line-height:60px;height:60px;width:100px;float:left;font-size:1.3em;"><?=$row['notice_idx']?></div>
+          								<div OnClick="location.href ='http://admin.mingo.pe.kr/notice/noticeDetail?notice_idx=<?=$row['notice_idx']?>'" style="text-align:center;line-height:60px;height:60px;width:500px;float:left;font-size:1.3em;"><?=$row['title']?></div>
+          								<div OnClick="location.href ='http://admin.mingo.pe.kr/notice/noticeDetail?notice_idx=<?=$row['notice_idx']?>'" style="text-align:center;line-height:60px;height:60px;width:400px;float:left;font-size:1.3em;"><?=$row['ins_date']?></div>
+          							<?php } ?>
                         </div>
 
                         <!-- 글쓰기 버튼 -->
-                        <div OnClick="location.href ='http://localhost/index.php/noticeController/noticeWriteForm'" style="float:right;margin-right: 10px; text-align:center; line-height:45px; font-size:1.0em; border-radius:5px;width:100px;height:45px;background-color:#0B3861;color:#FFFFFF;">글쓰기</div>
+                        <div OnClick="location.href ='http://admin.mingo.pe.kr/notice/noticeWriteForm'" style="float:right;margin-right: 10px; text-align:center; line-height:45px; font-size:1.0em; border-radius:5px;width:100px;height:45px;background-color:#0B3861;color:#FFFFFF;">글쓰기</div>
                     </div>
                 </div>
             </div>
