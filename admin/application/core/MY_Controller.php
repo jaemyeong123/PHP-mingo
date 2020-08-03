@@ -9,44 +9,32 @@ class MY_Controller extends CI_Controller {
 		header('P3P: CP="CAO DSP CURa ADMa TAIa PSAa OUR LAW STP PHY ONL UNI PUR FIN COM NAV INT DEM STA PRE"');
 
 		/* Helper */
-		$this->load->helper('url');
-		$this->load->helper('version_mapping');
-		$this->load->helper('empty_message');
+		// $this->load->helper('url');
+		// $this->load->helper('version_mapping');
+		// $this->load->helper('empty_message');
 
 		/* Library */
-		$this->load->library('session');
-		$this->load->library('global_function');
+		// $this->load->library('session');
+		// $this->load->library('global_function');
 		//$this->load->library('GCMPushMessage');
 
 		/* Model */
-		$this->load->model('gcm/model_gcm');
+		// $this->load->model('gcm/model_gcm');
 
 
-		//$this->load->model('gcm/model_gcm');
-		if($this->uri->segment(1) != "work_check") {
-			if(!$this->session->userdata('admin_idx') ){
-			 	if($this->uri->segment(1) == "" || $this->uri->segment(1) != "login" ){
-			 	 	redirect("/login");
-			 	 	exit;
-			 	}
-			}
-		}
+		// $this->admin_id=$this->session->userdata('admin_id');
+		// $this->admin_idx=$this->session->userdata('admin_idx');
+		// $this->admin_name=$this->session->userdata('admin_name');
+		// $this->admin_right=$this->session->userdata('admin_right');
 
-		$this->admin_id=$this->session->userdata('admin_id');
-		$this->admin_idx=$this->session->userdata('admin_idx');
-		$this->admin_name=$this->session->userdata('admin_name');
-		$this->admin_right=$this->session->userdata('admin_right');
-
-		//$this->keyword_list=$this->session->userdata('keyword_list');
 	}
 
 	function _view($view, $array=""){
 
-		$this->load->view("common/inc/header");
-		$this->load->view("work_check_api/work_check");
-		$this->load->view("common/inc/left");
+		$this->load->view("common/header");
+		$this->load->view("common/left");
 		$this->load->view($view, $array);
-		$this->load->view("common/inc/footer");
+		$this->load->view("common/footer");
 
 	}
 
@@ -56,13 +44,7 @@ class MY_Controller extends CI_Controller {
 
 	}
 
-	function _popup_view($view, $array=""){
 
-		$this->load->view("common/inc/header");
-		$this->load->view("work_check_api/work_check");
-		$this->load->view($view, $array);
-
-	}
 
 	function statistics_log(){
 

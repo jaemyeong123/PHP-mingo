@@ -1,7 +1,7 @@
 /*
- *  MEMO : 공통 스타일
- * 작성자 : 재명
- * 작성일 : 2020/08/04.
+ *  MEMO : 공통 스타일 파일입니다.
+ * 작성자 : 민지
+ * 작성일 : 2020/02/25.
 */
 
 /* css 초기화 */
@@ -132,6 +132,64 @@ select{vertical-align:middle; border: 0; border:1px solid #ddd; width:100%; heig
 .btn_w_130 a{display: inline-block; width: 130px; height: 40px; line-height: 38px; box-sizing: border-box; text-align: center; border-radius: 3px; font-size: 12px; font-family: 'NotoSansKR-Bold'}
 .btn_90_32 a{display: inline-block; width: 90px; height: 32px; line-height: 30px; box-sizing: border-box; text-align: center; border-radius: 3px;}
 
+/* modal 공통 레이아웃 */
+.modal{position: fixed; width:400px; height:300px; z-index: 1000; top:50%; left: 50%; transform: translate(-50%, -50%); display: none; }
+.modal .md_container{ color: #666; background: #fff; position: relative; border-radius: 10px; margin: 0 auto; padding: 30px; height: 100%;}
+.modal h3{color: #333; font-size: 20px; text-align: left}
+.modal span.md_close{display: block; font-size: 18px; position: absolute; right: 30px; top:30px; cursor: pointer}
+.modal span.md_close:hover{color: #333}
+.md_overlay{position: fixed; width: 100%; height: 100%; top:0; left:0; background: rgba(0,0,0,.5); opacity: 0; visibility: hidden; z-index: 200}
+
+
+
+/* 인풋 기본 스타일 */
+input{width: 100%; border: 0; height:38px; text-indent: 5px; -webkit-appearance: none; -webkit-border-radius: 0;}
+input[type='text'],input[type='password'],,input[type='submit'],input[type='search'] {-webkit-appearance:none; -webkit-border-radius:1px;}
+input:checked[type='checkbox'] {background-color:#666; -webkit-appearance:checkbox} button,input[type='button'],input[type='submit'],input[type='reset'],input[type='file'] {-webkit-appearance:button; border-radius:0}
+input[type='search']::-webkit-search-cancel-button {-webkit-appearance:none}
+textarea{-webkit-appearance: none; border-radius: 0}
+input.input_calendar{width: 180px; background: url('/images/i_calendar.png') no-repeat 10px 50%; background-size: 20px; padding-left: 30px;}
+
+input[type="checkbox"] {display:none;}
+input[type="checkbox"] + label {display:inline-block; margin-right:20px; color: #666; font-size: 12px; font-style: normal;}
+input[type="checkbox"] + label span {display:inline-block; width:13px; height:13px; margin:-3px 10px 0 0; vertical-align:middle; background:url('../images/btn_check_off.png') right center no-repeat; cursor:pointer; background-size:13px;}
+input[type="checkbox"]:checked + label span {background:url('../images/btn_check_on.png') right center no-repeat; background-size:13px;}
+
+input[type="radio"] {display:none;}
+input[type="radio"] + label {display:inline-block; margin-right: 40px; font-size:12px; color: #333; font-style: normal;}
+input[type="radio"] + label span {display:inline-block; width:13px; height:13px; margin:-3px 10px 0 0; vertical-align:middle; background:url('../images/btn_radio_off.png') right center no-repeat; cursor:pointer; background-size:13px;}
+input[type="radio"]:checked + label span {background:url('../images/btn_radio_on.png') right center no-repeat; background-size:13px;}
+
+/* 스위치 체크박스 */
+.switch {position:relative; display:inline-block; width:40px; height:24px;}
+.check_slider {position:absolute; cursor:pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff; -webkit-transition: .4s; transition: .4s; border-radius: 24px; border: 1px solid #757575;}
+.check_slider:before {position: absolute; content: ""; height: 22px; width: 22px; left:-1px; bottom:-1px; background-color: #fff; border: 1px solid #757575; -webkit-transition: .4s; transition: .4s; border-radius: 50%;}
+input:checked + .check_slider {background-color: #757575;}
+input:focus + .check_slider {box-shadow: 0 0 1px #757575;}
+input:checked + .check_slider:before {-webkit-transform: translateX(16px); -ms-transform: translateX(16px); transform: translateX(16px);}
+
+/* paging */
+.paging_wrap{margin-top: 40px; margin-bottom: 120px; overflow:hidden;}
+.paging{overflow: hidden; text-align:center;}
+.paging li{display: inline-block; }
+.paging a{font-family: 'Roboto-Regular'; background: #fff; color:#444; width: 32px; height: 32px; line-height: 30px; border-radius: 5px; display: inline-block;}
+.paging a:hover{width: 32px; height: 32px; text-decoration:none;}
+.paging a.active{font-weight: bold;}
+.paging li.active a{color:#FF932D;}
+.paging li.btn_next, .paging li.btn_prev{border: 1px solid #ddd; border-radius: 3px;}
+.paging ul li a img{vertical-align: middle; height: 7px;}
+
+.qa_detail_a_bg{margin-top: 40px;color:#666;font-size: 16px; line-height: 24px; width: 100%; padding: 30px; box-sizing: border-box; background: #F6F6F6;}
+.qa_detail_a_bg h3{margin-bottom: 30px; padding-left: 5px;}
+.qa_detail_a_bg h3 img{width: 27px; vertical-align: middle; margin-right: 10px; margin-top: -2px;}
+
+/* scroll design */
+.y-scroll::-webkit-scrollbar {width:8px !important; background: #f6f6f6; border-radius:30px; padding:5px;}
+.y-scroll::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height:0px;}
+.y-scroll::-webkit-scrollbar-track {background:#f6f6f6; -webkit-border-radius:30px; border-radius:30px;}
+.y-scroll::-webkit-scrollbar-thumb {height:10px; background:#e5e5e5; -webkit-border-radius:30px; border-radius:30px; }
+.y-scroll::-webkit-scrollbar-thumb:hover{background:#c8c8c8;}
+.y-scroll::-webkit-scrollbar-thumb:active{background:#a5a5a5;}
 
 .test_wrap{width:100%;height:100px;}
 #test{color:#0B3861;text-weight:bold;font-size: 1.2em;text-align:center;line-height:100px;}
