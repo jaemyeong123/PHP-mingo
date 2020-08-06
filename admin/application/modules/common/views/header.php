@@ -14,6 +14,13 @@
   <script src="/js/jquery-ui.js"></script>
   <script src="/js/swiper.min.js"></script>
 
+	<!-- react -->
+	<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+ 	<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+
+	<!-- react 컴포넌트 실행 -->
+	<!-- <script src="/reactjs/like_button.js"></script> -->
+
 
 </head>
 <body>
