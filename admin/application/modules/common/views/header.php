@@ -20,7 +20,11 @@
 	<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
  	<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
 	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-	
+
+	<!-- Redux & React-Redux Libraries -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.0/redux.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.7/react-redux.min.js"></script>
+
 	<!-- react 컴포넌트 실행 -->
 	<!-- <script src="/reactjs/like_button.js" ></script> -->
 
