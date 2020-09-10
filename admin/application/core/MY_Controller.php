@@ -30,18 +30,20 @@ class MY_Controller extends CI_Controller {
 	}
 
 	function _view($view, $array=""){
-
 		$this->load->view("common/header");
 		$this->load->view("common/left");
 		$this->load->view($view, $array);
 		$this->load->view("common/footer");
+	}
 
+	function _Login_view($view, $array=""){
+		$this->load->view("common/header");
+		$this->load->view($view, $array);
+		$this->load->view("common/footer");
 	}
 
 	function _list_view($view, $array=""){
-
 		$this->load->view($view, $array);
-
 	}
 
 
