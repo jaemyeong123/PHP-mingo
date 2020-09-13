@@ -1,12 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 /*
 |------------------------------------------------------------------------
-| Author :	최재명
-| Create-Date : 2020-07-29
-| Memo : login관리
+| Author : 김옥훈
+| Create-Date : 2019-06-04
+| Memo : 일반 로그인
 |------------------------------------------------------------------------
 
-_input_check 가이드
+input_check 가이드
 _________________________________________________________________________________
 |  !!. 변수설명
 | $key       : 파라미터로 받을 변수명
@@ -38,261 +38,68 @@ ________________________________________________________________________________
 */
 
 class Login_v_1_0_0 extends MY_Controller {
+
+  /* 생성자 영역 */
   function __construct(){
     parent::__construct();
 
-    $this->load->model(mapping('login').'/model_login');
+    $this->load->model('login_v_1_0_0/model_login');
   }
 
-  //인덱스
-  public function index() {
-    $this->login_detail();
-  }
+	// 회원 로그인
+	public function member_login(){
+		header('Content-Type: application/json');
+    $member_id = $this->_input_check("member_id",array("empty_msg"=>"이메일을 입력해주세요.","regular_msg" => "이메일 형식이 올바르지 않습니다","type" => "email"));
+    $member_pw = $this->_input_check("member_pw",array("empty_msg"=>"비밀번호를 입력해주세요."));
+    $gcm_key = $this->_input_check("gcm_key",array("empty_msg"=>"CM_KEY가 누락되었습니다."));
+    $device_os = $this->_input_check("device_os",array("empty_msg"=>"device_OS가 누락되었습니다."));
 
-  //메인 화면
-  public function login_detail(){
-    $return_url= $this->_input_check("return_url",array());
-
-    $response = new stdClass();
-    $response->return_url = $return_url;
-		$response->agent = $this->user_agent();
-
-		$this->_view_login(mapping('login').'/view_login_detail',$response);
-  }
-
-  // 공인중개사 로그인
-	public function login_action_member(){
-		$member_id = $this->_input_check("member_id",array("empty_msg"=>"아이디를 입력해주세요.","focus_id"=>"member_id"));
-		$member_pw = $this->_input_check("member_pw",array("empty_msg"=>"패스워드를 입력해주세요.","focus_id"=>"member_pw"));
-		$auto_login_yn= $this->_input_check("auto_login_yn",array());
-
-		$data['member_id'] = $member_id;
+    $data['member_id']  = $member_id;
 		$data['member_pw'] = $member_pw;
+		$data['gcm_key']    = $gcm_key;
+		$data['device_os']  = $device_os;
 
-		$response = new stdClass();
+		$member_login_check = $this->model_login->member_login_check($data);//회원 로그인
 
-		$check = $this->model_login->join_check_member($data);
-		if($check == 0){
-			$response->code = "0";
-			$response->code_msg = "아이디를 다시 확인해주세요.";
+		$response = new stdClass;
 
-			echo json_encode($response);
-			exit;
-		}
+    # 로그인 체크
+    if(count($member_login_check) == 0){
+      $response->code = "-1";
+      $response->code_msg = "로그인 정보가 일치하지 않습니다.";
 
-		$result = $this->model_login->login_action_member($data);
-		if(!empty($result)){
-			# 탈퇴한 회원 체크
-			if($result->del_yn == "Y"){
-		  	$response->code = "0";
-				$response->code_msg = "이미 탈퇴된 회원입니다.";
+      echo json_encode($response);
+      exit;
+    }
 
-				echo json_encode($response);
-				exit;
-			}
+    # 탈뢰한 회원 체크
+    if($member_login_check->del_yn == "Y"){
+      $response->code = "-1";
+      $response->code_msg = "이미 탈퇴된 회원입니다.";
 
-			# 승인대기중
-			if($result->del_yn == "R"){
-				$response->code = "0";
-				$response->code_msg = "승인 대기중입니다. 승인 완료 후 이용이 가능합니다";
+      echo json_encode($response);
+      exit;
+    }
 
-				echo json_encode($response);
-				exit;
-			}
+		$data['member_idx'] = $member_login_check->member_idx;
 
-			$response->code = "1000";
-			$response->code_msg = "로그인되었습니다.";
-			$response->member_idx =  $result->member_idx;
-			$response->member_name = $result->member_name;
+		$result = $this->model_login->member_gcm_device_up($data);//gcm_key, device_os 업데이트
 
-			$member_data = array(
-				"user_idx" => $result->member_idx,
-				"user_type" => "0",
-				"user_id" => $result->member_id,
-				"user_name" =>  $result->member_name,
-				"member_idx" => $result->member_idx,
-				"corp_idx" => 0,
-				"investor_idx" => 0,
-			);
-			$this->session->set_userdata($member_data);
-
-			// if(get_cookie('device_os') !=""){
-			// 	$data['member_idx'] = $result->member_idx;
-			// 	$data['gcm_key']    = get_cookie('gcm_key');
-			// 	$data['device_os']  = get_cookie('device_os');
-			//
-			// 	$this->model_login->member_gcm_device_up($data);//gcm_key, device_os 업데이트
-			// }
+    if($result < 0){
+			$response->code = "-1";
+			$response->code_msg = "정보를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.";
 
 		}else{
-			$response->code = "0";
-			$response->code_msg = "비밀번호를 다시 확인해주세요.";
-		}
-
-		echo json_encode($response);
-		exit;
-  }
-
-	// 펀드매니저 로그인
-	public function login_action_corp(){
-		$corp_id = $this->_input_check("corp_id",array("empty_msg"=>"아이디를 입력해주세요.","focus_id"=>"corp_id"));
-		$corp_pw = $this->_input_check("corp_pw",array("empty_msg"=>"패스워드를 입력해주세요.","focus_id"=>"corp_pw"));
-		$auto_login_yn= $this->_input_check("auto_login_yn",array());
-
-		$data['corp_id'] = $corp_id;
-		$data['corp_pw'] = $corp_pw;
-
-		// $data['corp_id'] = "ydkman@naver.com";
-		// $data['corp_pw'] = "rocat1234";
-    // $auto_login_yn="";
-		$response = new stdClass();
-
-		$check = $this->model_login->join_check_corp($data);
-		if($check == 0){
-			$response->code = "0";
-			$response->code_msg = "아이디를 다시 확인해주세요.";
-
-			echo json_encode($response);
-			exit;
-		}
-
-		$result = $this->model_login->login_action_corp($data);
-		if(!empty($result)){
-			# 탈퇴한 회원 체크
-			if($result->del_yn == "Y"){
-		  	$response->code = "0";
-				$response->code_msg = "이미 탈퇴된 회원입니다.";
-
-				echo json_encode($response);
-				exit;
-			}
-
-			# 승인대기중
-			if($result->del_yn == "R"){
-				$response->code = "0";
-				$response->code_msg = "승인 대기중입니다. 승인 완료 후 이용이 가능합니다";
-
-				echo json_encode($response);
-				exit;
-			}
-
 			$response->code = "1000";
-			$response->code_msg = "로그인되었습니다.";
-			$response->corp_idx =  $result->corp_idx;
-			$response->corp_name = $result->corp_name;
-
-			$corp_data = array(
-				"user_idx" => $result->corp_idx,
-				"user_type" => "1",
-				"user_id" => $result->corp_id,
-				"user_name" =>  $result->corp_name,
-				"member_idx" => 0,
-				"corp_idx" => $result->corp_idx,
-				"investor_idx" => 0,
-			);
-			$this->session->set_userdata($corp_data);
-
-			$notice = $this->model_login->notice_list($data);
-
-			$notice_data = array(
-				"notice_idx" => $notice->notice_idx,
-				"title" => $notice->title,
-			);
-
-			$this->session->set_userdata($notice_data);
-
-			// if(get_cookie('device_os') !=""){
-			// 	$data['corp_idx'] = $result->corp_idx;
-			// 	$data['gcm_key']    = get_cookie('gcm_key');
-			// 	$data['device_os']  = get_cookie('device_os');
-			//
-			// 	$this->model_login->corp_gcm_device_up($data);//gcm_key, device_os 업데이트
-			// }
-
-		}else{
-			$response->code = "0";
-			$response->code_msg = "비밀번호를 다시 확인해주세요.";
+			$response->code_msg = "정상";
+			$response->member_idx = $member_login_check->member_idx;
+      $response->member_id = $member_login_check->member_id;
+      $response->member_name = $member_login_check->member_name;
+      $response->member_type = $member_login_check->member_type;
 		}
 
-		echo json_encode($response);
-		exit;
-  }
-
-  // 투자자 로그인
-	public function login_action_investor(){
-		$investor_id = $this->_input_check("investor_id",array("empty_msg"=>"아이디를 입력해주세요.","focus_id"=>"investor_id"));
-		$investor_pw = $this->_input_check("investor_pw",array("empty_msg"=>"패스워드를 입력해주세요.","focus_id"=>"investor_pw"));
-		$auto_login_yn= $this->_input_check("auto_login_yn",array());
-
-		$data['investor_id'] = $investor_id;
-		$data['investor_pw'] = $investor_pw;
-
-		// $data['investor_id'] = "ydkman@naver.com";
-		// $data['investor_pw'] = "rocat1234";
-    // $auto_login_yn="";
-		$response = new stdClass();
-
-		$check = $this->model_login->join_check_investor($data);
-		if($check == 0){
-			$response->code = "0";
-			$response->code_msg = "아이디를 다시 확인해주세요.";
-
-			echo json_encode($response);
-			exit;
-		}
-
-		$result = $this->model_login->login_action_investor($data);
-		if(!empty($result)){
-			# 탈퇴한 회원 체크
-			if($result->del_yn == "Y"){
-		  	$response->code = "0";
-				$response->code_msg = "이미 탈퇴된 회원입니다.";
-
-				echo json_encode($response);
-				exit;
-			}
-
-			# 승인대기중
-			if($result->del_yn == "R"){
-				$response->code = "0";
-				$response->code_msg = "승인 대기중입니다. 승인 완료 후 이용이 가능합니다";
-
-				echo json_encode($response);
-				exit;
-			}
-
-			$response->code = "1000";
-			$response->code_msg = "로그인되었습니다.";
-			$response->investor_idx =  $result->investor_idx;
-			$response->investor_name = $result->investor_name;
-
-			$investor_data = array(
-				"user_idx" => $result->investor_idx,
-				"user_type" => "2",
-				"user_id" => $result->investor_id,
-				"user_name" =>  $result->investor_name,
-				"investor_idx" => $result->investor_idx,
-				"member_idx" => 0,
-				"corp_idx" => 0,
-			);
-			$this->session->set_userdata($investor_data);
-
-			// if(get_cookie('device_os') !=""){
-			// 	$data['investor_idx'] = $result->investor_idx;
-			// 	$data['gcm_key']    = get_cookie('gcm_key');
-			// 	$data['device_os']  = get_cookie('device_os');
-			//
-			// 	$this->model_login->investor_gcm_device_up($data);//gcm_key, device_os 업데이트
-			// }
-
-		}else{
-			$response->code = "0";
-			$response->code_msg = "비밀번호를 다시 확인해주세요.";
-		}
-
-		echo json_encode($response);
-		exit;
-  }
-
-}// 클래스의 끝
+    echo json_encode($response);
+    exit;
+	}
+}	// 클래스의 끝
 ?>

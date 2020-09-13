@@ -1,42 +1,75 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Model_common extends CI_Model {
+/*
+|------------------------------------------------------------------------
+| Author : 김옥훈
+| Create-Date : 2016-02-29
+| Memo : 공통 기능
+|------------------------------------------------------------------------
+*/
 
-  //생성자
-  public function __construct() {
-    parent::__construct();
+Class Model_common extends MY_Model {
 
-    $this->load->database();
-  }
+  //지역 시도 리스트
+	public function city_list() {
 
-    // 전체 게시글 db 조회
-	public function noticeGetList(){
-    return $this->db->get('tbl_notice')->result_array();
+		$sql = "SELECT
+							city_cd,
+							city_name,
+							id_cd
+						FROM
+							tbl_city_cd
+						ORDER BY order_no ASC
+				  ";
+
+		return $this->query_result($sql,
+															array(
+
+															)
+														  );
 	}
 
-  // 게시글 db 등록
-  public function noticeRegist(){
+  //구군 리스트
+	public function region_list($data) {
+		$city_cd=$data['city_cd'];
 
-    $row = array('title' => $_REQUEST['title'],
-                 'contents' => $_REQUEST['contents']
-    );
+		$sql = "SELECT
+							region_cd,
+							region_name,
+							city_cd
+						FROM
+							tbl_region_cd
+						WHERE
+							city_cd =?
+						ORDER BY order_no ASC
+				  ";
 
-    return $this->db->insert('tbl_notice', $row);
-  }
+		return $this->query_result($sql,
+															array(
+															$city_cd
+															),$data
+															);
 
-  public function noticeSelectById($notice_idx){
-      return $this->db->get_where('tbl_notice', array('notice_idx' => $notice_idx))->row();
-  }
+	}
 
-  public function noticeUpdate($notice_idx){
-    $row = array('title' => $_REQUEST['title'],
-                 'contents' => $_REQUEST['contents']
-    );
-    return $this->db->update('tbl_notice', $row, array('notice_idx' => $notice_idx));
-  }
+  //app 버전 가져오기
+	public function app_version($data) {
+		$device_os=$data['device_os'];
 
-  public function noticeDelete($notice_idx){
-      return $this->db->delete('tbl_notice', array('notice_idx' => $notice_idx));
-  }
+		$sql = "SELECT
+							version
+						FROM
+							tbl_app_version
+						WHERE
+							device_os=?
+					";
+
+		return $this->query_row($sql,
+														array(
+														$device_os
+														),$data
+														);
+	}
+
 }
+?>
