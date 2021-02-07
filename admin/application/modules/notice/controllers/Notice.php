@@ -1,64 +1,32 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/*
+|------------------------------------------------------------------------
+| Author :	송민지
+| Create-Date : 2020-12-31
+| Memo : 공지사항
+|------------------------------------------------------------------------
+*/
 
-class Notice extends CI_Controller {
-
+class Notice extends MY_Controller{
 	function __construct(){
-    parent::__construct();
+		parent::__construct();
+	}
 
+	//인덱스
+  public function index() {
+    $this->notice_list();
   }
 
-	// 기본값
-	public function index(){
-		$this->noticeGetList();
-	}
+	//리스트
+  public function notice_list(){
+    $this->_view_sub('notice/view_notice_list');
+  }
 
-	// 게시글 리스트 조회
-	public function noticeGetList(){
-		$this->load->model('model_notice');
-		$data['noticeList'] = $this->model_notice->noticeGetList();
-		$this->load->view('noticeView', $data);
-	}
+	//상세
+  public function notice_detail(){
+    $this->_view_sub('notice/view_notice_detail');
+  }
 
-	//게시글 등록 양식으로 이동
-	public function noticeWriteForm(){
-		$this->load->view('noticeWriteForm');
-	}
 
-	// 게시글 등록 후 리스트 조회
-	public function noticeRegist(){
-		$this->load->model('model_notice');
-		$regist_result = $this->model_notice->noticeRegist();
-		$data['noticeList'] = $this->model_notice->noticeGetList();
-		$this->load->view('noticeView', $data);
-	}
-
-	//게시글 상세 양식으로 이동
-	public function noticeDetail(){
-		$this->load->model('model_notice');
-		$data['noticeRow'] = $this->model_notice->noticeSelectById($_REQUEST['notice_idx']);
-		$this->load->view('noticeDetail', $data);
-	}
-
-	// 게시글 수정 양식으로 이동
-	public function noticeModifyForm(){
-		$this->load->model('model_notice');
-		$data['noticeRow'] = $this->model_notice->noticeSelectById($_REQUEST['notice_idx']);
-		$this->load->view('noticeModifyForm', $data);
-	}
-
-	// 게시글 수정 후 리스트 상세조회
-	public function noticeModify(){
-		$this->load->model('model_notice');
-		$this->model_notice->noticeUpdate($_REQUEST['notice_idx']);
-		$data['noticeRow'] = $this->model_notice->noticeSelectById($_REQUEST['notice_idx']);
-		$this->load->view('noticeDetail', $data);
-	}
-
-	// 게시글 삭제 후 리스트 조회
-	public function noticeDelete(){
-		$this->load->model('model_notice');
-		$this->model_notice->noticeDelete($_REQUEST['notice_idx']);
-		$data['noticeList'] = $this->model_notice->noticeGetList();
-		$this->load->view('noticeView', $data);
-	}
-}
+}// 클래스의 끝
+?>

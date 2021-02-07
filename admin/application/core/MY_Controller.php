@@ -36,6 +36,13 @@ class MY_Controller extends CI_Controller {
 		$this->load->view("common/footer");
 	}
 
+	function _view_sub($view, $array=""){
+		$this->load->view("common/header");
+		// $this->load->view("common/left");
+		$this->load->view($view, $array);
+		// $this->load->view("common/footer");
+	}
+
 	function _Login_view($view, $array=""){
 		$this->load->view("common/header");
 		$this->load->view($view, $array);

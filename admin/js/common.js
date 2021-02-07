@@ -1,3 +1,15 @@
+//사이드 네비 토글
+function side_nav_toggle(){
+  $(".nav, .nav_dim").toggleClass("open");
+
+  if($(".nav").hasClass("open")){
+
+    $.lockBody();
+  } else {
+    $.unlockBody();
+  }
+}
+
 // // 전체동의폼 ::민지
 // function allCheckFunc( obj ) {
 //   $("[name=checkOne]").prop("checked", $(obj).prop("checked") );
@@ -45,17 +57,7 @@
 //
 // });
 //
-// //사이드 네비 토글
-// function side_nav_toggle(){
-//   $(".nav, .nav_dim").toggleClass("open");
-//
-//   if($(".nav").hasClass("open")){
-//
-//     $.lockBody();
-//   } else {
-//     $.unlockBody();
-//   }
-// }
+
 //
 // $(document).ready(function() {
 //
