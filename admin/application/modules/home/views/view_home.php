@@ -6,7 +6,6 @@
 <!-- header : e -->
 
 
-
 <div class="test_wrap" style="margin-top:100px;">
 	<!-- <p id="test">테스트!!</p> -->
 	<div id="like_button_container"></div>
