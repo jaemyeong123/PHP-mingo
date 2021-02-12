@@ -9,14 +9,15 @@ class MY_Controller extends CI_Controller {
 		header('P3P: CP="CAO DSP CURa ADMa TAIa PSAa OUR LAW STP PHY ONL UNI PUR FIN COM NAV INT DEM STA PRE"');
 
 		/* Helper */
-		// $this->load->helper('url');
+		$this->load->helper('url');
 		// $this->load->helper('version_mapping');
 		// $this->load->helper('empty_message');
 
 		/* Library */
 		// $this->load->library('session');
-		// $this->load->library('global_function');
-		//$this->load->library('GCMPushMessage');
+		$this->load->library('global_function');
+		$this->load->library('global_msg');
+		$this->load->library('GCMPushMessage');
 
 		/* Model */
 		// $this->load->model('gcm/model_gcm');
