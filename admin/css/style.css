@@ -63,17 +63,3 @@ footer li.active img{position: relative; top: 0; left: -20px; height: 20px; disp
 
 header .head_title{width: 100%;height:100%;line-height: 50px; text-align: center;}
 /* header .body_area{padding:20px;} */
-
-
-.no_data{padding: 40px 0; box-sizing: border-box;text-align: center;}
-.no_data img{display: block; margin: 0 auto; margin-bottom: 20px;width: 60px;}
-.no_data p{font-size: 16px; color:#999;}
-
-
-
-.notice_ul li{width: 100%;padding: 20px; box-sizing: border-box;overflow: hidden; }
-.notice_ul li p.title{text-overflow: ellipsis; width: 100%; overflow: hidden; white-space: nowrap;font-size: 16px;color:#484848}
-.notice_ul li .date{margin-top: 6px;display: block;font-size: 12px;color:#999;}
-.notice_title{padding: 0 20px;font-size: 16px;color:#484848;margin-top: 60px;}
-.notice_date{padding: 0 20px;margin-bottom: 20px;margin-top: 6px;display: block;font-size: 12px;color:#999;}
-.notice_content{font-size: 14px;color:#484848;line-height: 24px;padding: 20px;box-sizing: border-box;}
