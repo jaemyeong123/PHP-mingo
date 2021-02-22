@@ -25,3 +25,13 @@ footer li.active a{color:#F8B62B;}
 footer li a span{overflow: hidden; margin: 8px auto 6px auto; width:20px; height: 20px; display: block;}
 footer li img{position: relative; top: 0; left: 0; height: 20px; display: block}
 footer li.active img{position: relative; top: 0; left: -20px; height: 20px; display: block}
+
+/* wallet */
+.wallet_ul {padding: 10px;}
+.wallet_ul li{width: 100%;height:80px; border-radius:15px;box-shadow: 5px 5px 20px -3px #BDBDBD;}
+.wallet_ul li > img{display:inline_block;}
+.wallet_ul li .wallet_img_area{height:100%; width:30%;display:inline_block;}
+.wallet_ul li .wallet_img_area > *{display:inline_block;height:80px;line-height: 80px;}
+.wallet_ul li .cafe_name{display:inline_block;}
+.wallet_ul li img{height:100%; float:left;}
+.wallet_ul .head_btn_go{width: 30px;height:30px; border-radius:100%; background-color: $ffffff; box-shadow: 5px 5px 5px 5px gray;}

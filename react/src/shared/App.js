@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Home, About, Menu } from '../pages';
+import { Home, About, Menu, Wallet } from '../pages';
 import axios from 'axios';
 
 
@@ -57,7 +57,7 @@ class App extends Component {
                           <Route exact path="/" component={Home}/>
                           <Switch location={location}>
                               <Route path="/home:name" component={About}/>
-                              <Route path="/wallet:name" component={About}/>
+                              <Route path="/wallet:name" component={Wallet}/>
                               <Route path="/qrcode:name" component={About}/>
                               <Route path="/search:name" component={About}/>
                               <Route path="/more:name" component={About}/>
