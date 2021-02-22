@@ -53,6 +53,8 @@ class App extends Component {
                           <QRCode style={{"width":"100%", "height":"100%"}} value="http://facebook.github.io/react/" />
                         </div>
 
+                        <div style={{"width":"100%", "height":"300px", "backgroundColor":"#B18904", "zIndex":"1"}}></div>
+
                         <div style={{"padding":"10px"}}>
                           <Route exact path="/" component={Home}/>
                           <Switch location={location}>

@@ -27,11 +27,29 @@ footer li img{position: relative; top: 0; left: 0; height: 20px; display: block}
 footer li.active img{position: relative; top: 0; left: -20px; height: 20px; display: block}
 
 /* wallet */
-.wallet_ul {padding: 10px;}
-.wallet_ul li{width: 100%;height:80px; border-radius:15px;box-shadow: 5px 5px 20px -3px #BDBDBD;}
-.wallet_ul li > img{display:inline_block;}
-.wallet_ul li .wallet_img_area{height:100%; width:30%;display:inline_block;}
-.wallet_ul li .wallet_img_area > *{display:inline_block;height:80px;line-height: 80px;}
+.wallet_ul {padding: 10px;z-index: 10}
+.wallet_ul li{list-style:none;width: 100%;height:80px; border-radius:0 0 15px 15px;box-shadow: 5px 5px 20px -3px #BDBDBD;}
+.wallet_ul li > span{height:80px;line-height:40px;}
+.wallet_ul .wallet_img_area{width:80px;}
+.wallet_ul .wallet_img_area > img{display:inline_block;width:40px;margin: 20px auto;}
+.wallet_ul .cafe_name{width:80px;}
+.wallet_ul .head_btn_go{width:80px;}
+
+
+
+/* .wallet_ul li *{float:left;} */
+/* .wallet_ul li .wallet_img_area{height:80px; width:100px;padding:10px;}
+.wallet_ul li .wallet_img_area img{display:inline_block;text-align:center;width:50px;height:50px;line-height: 80px;}
 .wallet_ul li .cafe_name{display:inline_block;}
-.wallet_ul li img{height:100%; float:left;}
-.wallet_ul .head_btn_go{width: 30px;height:30px; border-radius:100%; background-color: $ffffff; box-shadow: 5px 5px 5px 5px gray;}
+.wallet_ul li .head_btn_go {line-height:80px;}
+.wallet_ul li .head_btn_go img{height:100%; } */
+
+
+
+
+
+
+
+
+.wallet_ul .head_btn_go{padding:5px 5px 5px 5px;width: 20px;height:20px; border-radius:100%; background-color: $ffffff; box-shadow: 5px 5px 20px -3px #BDBDBD;}
+.head_btn_go img{position: relative;left:2px;}

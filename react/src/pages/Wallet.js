@@ -15,12 +15,19 @@ const About = ({location, match}) => {
     return (
         <ul className="wallet_ul">
           <li>
-            <div className="wallet_img_area">
+            <span className="wallet_img_area">
               <img className="" src={starbucks}></img>
-            </div>
+            </span>
             <span className="cafe_name">스타벅스 샤로수길점</span>
-            <img className="head_btn_go" src={head_btn_go}></img>
+            <span className="head_btn_go">
+              <img className="" src={head_btn_go}></img>
+            </span>
           </li>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
           <li>
             <div>
               <img src={baekdabang}></img>
