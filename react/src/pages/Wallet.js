@@ -15,40 +15,60 @@ const About = ({location, match}) => {
     return (
         <ul className="wallet_ul">
           <li>
-            <span className="wallet_img_area">
+            <div className="wallet_div_1">
               <img className="" src={starbucks}></img>
-            </span>
-            <span className="cafe_name">스타벅스 샤로수길점</span>
-            <span className="head_btn_go">
+            </div>
+            <div className="wallet_div_2">
+              <span className="cafe_name">스타벅스 샤로수길점</span>
+            </div>
+            <div className="wallet_div_3">
               <img className="" src={head_btn_go}></img>
-            </span>
-          </li>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <li>
-            <div>
-              <img src={baekdabang}></img>
             </div>
-            <p>백다방 경희대점</p>
-            <img src={head_btn_go}></img>
           </li>
           <li>
-            <div>
-              <img src={coffeebean}></img>
+            <div className="wallet_div_1">
+              <img className="" src={baekdabang}></img>
             </div>
-            <p>커피빈 회기점</p>
-            <img src={head_btn_go}></img>
+            <div className="wallet_div_2">
+              <span className="cafe_name">백다방 경희대점</span>
+            </div>
+            <div className="wallet_div_3">
+              <img className="" src={head_btn_go}></img>
+            </div>
           </li>
           <li>
-            <div>
-              <img src={ediya}></img>
+            <div className="wallet_div_1">
+              <img className="" src={coffeebean}></img>
             </div>
-            <p>이디야 가산디지털단지점</p>
-            <img src={head_btn_go}></img>
+            <div className="wallet_div_2">
+              <span className="cafe_name">커피빈 회기점</span>
+            </div>
+            <div className="wallet_div_3">
+              <img className="" src={head_btn_go}></img>
+            </div>
           </li>
+          <li>
+            <div className="wallet_div_1">
+              <img className="" src={ediya}></img>
+            </div>
+            <div className="wallet_div_2">
+              <span className="cafe_name">이디야 가산디지털단지점</span>
+            </div>
+            <div className="wallet_div_3">
+              <img className="" src={head_btn_go}></img>
+            </div>
+          </li>
+
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
         </ul>
     );
 };
