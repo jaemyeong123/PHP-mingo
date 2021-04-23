@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Home, About, Menu, Wallet } from '../pages';
+import { Test } from '../components';
 import axios from 'axios';
 
 
@@ -52,7 +53,7 @@ class App extends Component {
                         <div style={{"padding":"30px", "margin":"20px auto", "maxWidth":"200px", "maxHeight":"200px"}}>
                           <QRCode style={{"width":"100%", "height":"100%"}} value="http://facebook.github.io/react/" />
                         </div>
-
+                        <Test></Test>
                         <div style={{"width":"100%", "height":"300px", "backgroundColor":"#B18904", "zIndex":"1"}}></div>
 
                         <div style={{"padding":"10px"}}>
