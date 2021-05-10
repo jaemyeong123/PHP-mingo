@@ -15,9 +15,18 @@ import React, { Component } from 'react';
 
 class Test extends Component{
 
+
+
+
+
+
+
   render(){
     return (
-      <div style={{textAlign:"center", fontSize:"20px", margin:"30px"}}>스타벅스 샤로수길점</div>
+      <div>
+        <div style={{textAlign:"center", fontSize:"20px", margin:"30px"}}>스타벅스 샤로수길점</div>
+        
+      </div>
     );
   }
 
