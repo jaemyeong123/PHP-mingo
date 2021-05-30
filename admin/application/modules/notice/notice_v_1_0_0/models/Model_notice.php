@@ -31,11 +31,9 @@ Class Model_notice extends MY_Model{
 
 		$sql .=" ORDER BY notice_idx DESC LIMIT ?, ? ";
 
-		return $this->query_result($sql,array(
-															 $page_no,
-															 $page_size
-															 ),$data
-														 );
+		return $this->query_result($sql,array($page_no,
+																					$page_siz,
+																					$data);
 	}
 
 	// 공지사항 리스트 총 카운트
@@ -73,8 +71,7 @@ Class Model_notice extends MY_Model{
 							AND del_yn = 'N'
 					";
 
-   		return $this->query_row($sql,array(
-														  $notice_idx
+   		return $this->query_row($sql,array($notice_idx
 														  ),$data
 														);
 	}

@@ -27,32 +27,35 @@ class VerticalPopup extends Component{
 
   constructor(props) {
     super(props);
-    this.modal_open_login = this.modal_open_login.bind(this);
-    this.modal_close_login = this.modal_close_login.bind(this);
-  }
-  state = {
-    modal_show:"hide"
+
   }
 
-  modal_open_login = () => {
+  modal_open_login2 = () => {
     this.setState({
       modal_show:"show"
     })
   }
 
-  modal_close_login = () => {
+  modal_close_login2 = () => {
+    console.log("123123");
     this.setState({
-      modal_show:"hide"
+      modal_show:"hide1"
     })
+
   }
+
 
   render() {
 
-    return (
+    const modal_close_login2 = this.modal_close_login2
 
+    const modal_show = this.props.modal_show
+    const modal_close_login = this.props.modal_close_login
+
+    return (
       <div>
-        <div className={`login_wrap modal_login ${this.state.modal_show}`} >
-          <img src="/images/head_btn_close.png" alt="닫기" onClick={()=>this.modal_close_login()} className="md_close"/>
+        <div className={`login_wrap modal_login ${modal_show==="show"? "show":"hide"}`} >
+          <img src="/images/head_btn_close.png" alt="닫기" onClick={()=>modal_close_login2()} className="md_close"/>
           <img src="/images/logo.png" alt="망고하다" className="login_logo"/>
           <input type="text"  id="member_id" name="member_id" className="login_id" placeholder="아이디"/>
           <input type="password"  id="member_pw" name="member_pw" className="login_pw mt12" placeholder="비밀번호"/>
@@ -71,7 +74,7 @@ class VerticalPopup extends Component{
             </li>
           </ul>
         </div>
-        <div className="md_overlay md_overlay_login" onClick={()=>this.modal_close_login()}></div>
+        <div className="md_overlay md_overlay_login" onClick={()=>modal_close_login2()}></div>
       </div>
     );
   }
