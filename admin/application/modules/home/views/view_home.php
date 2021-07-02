@@ -10,6 +10,24 @@
 	<!-- <p id="test">테스트!!</p> -->
 	<div id="like_button_container"></div>
 	<img src="/images/user_default.png" alt="">
+  <a href="javascript:void(0)" onclick="play_audio()">플레이</a>
+
+  <audio></audio>
+  <audio src='/audio/normal.mp3'id="normal">
+
+
 </div>
+<script type="text/javascript">
+
+var audio_normal = document.getElementById('normal');
+function play_audio(){
+  audio_normal.play();
+}
+
+
+
+
+
+</script>
 
 <script type="text/babel" src="/reactjs/like_button.js" ></script>
